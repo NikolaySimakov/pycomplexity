@@ -1,0 +1,52 @@
+import inspect
+from typing import List, Optional
+
+from .analysis import Analyser, AnalysisFormatter
+
+
+'''
+Base class of asymptotic notation
+'''
+class Notation:
+
+    def __init__(self) -> None:
+        self.code_to_analyse : List[str] = []
+    
+    def __repr__(self) -> str:
+        return '\n'.join(self.code_to_analyse)
+    
+    def _code_to_string(self, func):
+        def wrapper(*args, **kwargs) -> Optional[str]:
+            code = inspect.getsource(func)
+            code_lines = code.split('\n')[1:]
+            modified_code = '\n'.join(code_lines)
+            self.code_to_analyse.append(modified_code)
+            return self.code_to_analyse
+        return wrapper
+    
+    def get_code(self, func):
+        return self._code_to_string(func)()
+
+
+'''
+Implementation of Big O notation
+'''
+class BigO(Notation):
+
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def complexity(self, func) -> AnalysisFormatter:
+        self.get_code(func)
+
+
+'''
+Implementation of Big Omega notation
+'''
+class BigOmega(Notation):
+    
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def complexity(self, func) -> AnalysisFormatter:
+        pass
