@@ -8,7 +8,7 @@ from .analysis import Analyzer, AnalysisFormatter, NotationFormat
 '''
 Base class of asymptotic notation
 '''
-class Notation:
+class AsymptoticNotation:
 
     def __init__(self, full_report: bool = True) -> None:
         self.full_report = full_report
@@ -23,7 +23,7 @@ class Notation:
         code_str = self._code_to_string(func)
         return ast.parse(code_str)
     
-    def analyse(self, func):
+    def analyze(self, func):
         analyzer = Analyzer()
         tree = self._get_ast(func)
         # print(ast.dump(tree, indent=4))
@@ -51,15 +51,15 @@ class Notation:
 '''
 Implementation of Big O notation
 '''
-class BigO(Notation):
+class BigO(AsymptoticNotation):
 
     def __init__(self) -> None:
         super().__init__()
     
-    @Notation.report
+    @AsymptoticNotation.report
     def complexity(self, func) -> AnalysisFormatter:
         
-        func_name, _ = self.analyse(func)
+        func_name, _ = self.analyze(func)
         
         return AnalysisFormatter(
             func_name=func_name,
@@ -70,15 +70,15 @@ class BigO(Notation):
 '''
 Implementation of Big Omega notation
 '''
-class BigOmega(Notation):
+class BigOmega(AsymptoticNotation):
     
     def __init__(self) -> None:
         super().__init__()
     
-    @Notation.report
+    @AsymptoticNotation.report
     def complexity(self, func) -> AnalysisFormatter:
         
-        func_name, _ = self.analyse(func)
+        func_name, _ = self.analyze(func)
         
         return AnalysisFormatter(
             func_name=func_name,
@@ -89,15 +89,15 @@ class BigOmega(Notation):
 '''
 Implementation of Big Theta notation
 '''
-class BigTheta(Notation):
+class BigTheta(AsymptoticNotation):
     
     def __init__(self) -> None:
         super().__init__()
     
-    @Notation.report
+    @AsymptoticNotation.report
     def complexity(self, func) -> AnalysisFormatter:
         
-        func_name, _ = self.analyse(func)
+        func_name, _ = self.analyze(func)
         
         return AnalysisFormatter(
             func_name=func_name,
