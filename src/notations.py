@@ -1,5 +1,6 @@
+import ast
 import inspect
-from typing import List, Optional
+from typing import List, Tuple
 
 from .analysis import Analyzer, AnalysisFormatter, NotationFormat
 
@@ -9,28 +10,41 @@ Base class of asymptotic notation
 '''
 class Notation:
 
-    def __init__(self) -> None:
-        self.code_to_analyse : List[str] = []
+    def __init__(self, full_report: bool = True) -> None:
+        self.full_report = full_report
     
-    def __repr__(self) -> str:
-        return '\n'.join(self.code_to_analyse)
+    def _code_to_string(self, func) -> str:
+        code = inspect.getsource(func)
+        code_lines = code.split('\n')[1:]
+        modified_code = '\n'.join(code_lines)
+        return modified_code
     
-    def _code_to_string(self, func):
-        def wrapper(*args, **kwargs) -> Optional[str]:
-            code = inspect.getsource(func)
-            code_lines = code.split('\n')[1:]
-            modified_code = '\n'.join(code_lines)
-            self.code_to_analyse.append(modified_code)
-            return self.code_to_analyse
-        return wrapper
+    def _get_ast(self, func) -> ast.Module:
+        code_str = self._code_to_string(func)
+        return ast.parse(code_str)
     
-    def get_code(self, func):
-        return self._code_to_string(func)()
+    def analyse(self, func):
+        analyzer = Analyzer()
+        tree = self._get_ast(func)
+        # print(ast.dump(tree, indent=4))
+        
+        for node in ast.walk(tree):
+            # print(node)
+            if isinstance(node, ast.FunctionDef):
+                func_name = node.name
+            
+            if isinstance(node, ast.For):
+                print(node, node.body, node.iter)
+
+        # analyzer.visit(tree)
+        # analyzer.report()
+        
+        return func_name or 'No name', ...
     
     def report(func):
         def wrapper(self, *args, **kwargs):
             analysis_formatter: AnalysisFormatter = func(self, *args, **kwargs)
-            return analysis_formatter.report()
+            return analysis_formatter.report(full=self.full_report)
         return wrapper
 
 
@@ -45,10 +59,12 @@ class BigO(Notation):
     @Notation.report
     def complexity(self, func) -> AnalysisFormatter:
         
+        func_name, _ = self.analyse(func)
+        
         return AnalysisFormatter(
+            func_name=func_name,
             notation_format=NotationFormat.BIG_O,
         )
-        
 
 
 '''
@@ -62,7 +78,10 @@ class BigOmega(Notation):
     @Notation.report
     def complexity(self, func) -> AnalysisFormatter:
         
+        func_name, _ = self.analyse(func)
+        
         return AnalysisFormatter(
+            func_name=func_name,
             notation_format=NotationFormat.BIG_OMEGA,
         )
         
@@ -78,6 +97,9 @@ class BigTheta(Notation):
     @Notation.report
     def complexity(self, func) -> AnalysisFormatter:
         
+        func_name, _ = self.analyse(func)
+        
         return AnalysisFormatter(
+            func_name=func_name,
             notation_format=NotationFormat.BIG_THETA,
         )
