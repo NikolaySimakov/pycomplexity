@@ -1,7 +1,7 @@
 import inspect
 from typing import List, Optional
 
-from .analysis import Analyser, AnalysisFormatter
+from .analysis import Analyzer, AnalysisFormatter, NotationFormat
 
 
 '''
@@ -26,6 +26,12 @@ class Notation:
     
     def get_code(self, func):
         return self._code_to_string(func)()
+    
+    def report(func):
+        def wrapper(self, *args, **kwargs):
+            analysis_formatter: AnalysisFormatter = func(self, *args, **kwargs)
+            return analysis_formatter.report()
+        return wrapper
 
 
 '''
@@ -36,8 +42,13 @@ class BigO(Notation):
     def __init__(self) -> None:
         super().__init__()
     
+    @Notation.report
     def complexity(self, func) -> AnalysisFormatter:
-        self.get_code(func)
+        
+        return AnalysisFormatter(
+            notation_format=NotationFormat.BIG_O,
+        )
+        
 
 
 '''
@@ -48,5 +59,9 @@ class BigOmega(Notation):
     def __init__(self) -> None:
         super().__init__()
     
+    @Notation.report
     def complexity(self, func) -> AnalysisFormatter:
-        pass
+        
+        return AnalysisFormatter(
+            notation_format=NotationFormat.BIG_OMEGA,
+        )
