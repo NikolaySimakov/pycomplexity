@@ -36,6 +36,7 @@ class NotationFormat(Enum):
     
     BIG_O : str = 'BIG O'
     BIG_OMEGA : str = 'BIG Ω (OMEGA)'
+    BIG_THETA : str = 'BIG Θ (THETA)'
     
     def __str__(self) -> str:
         return str(self.value)
@@ -82,6 +83,10 @@ class AnalysisFormatter:
         if self.notation_format == NotationFormat.BIG_OMEGA:
             print('Сomplexity of algorithm: Ω({})'.format(self.complexity))
             print('Memory of algorithm: Ω({})'.format(self.memory))
+            
+        if self.notation_format == NotationFormat.BIG_THETA:
+            print('Сomplexity of algorithm: Θ({})'.format(self.complexity))
+            print('Memory of algorithm: Θ({})'.format(self.memory))
         
         print()
         

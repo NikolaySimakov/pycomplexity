@@ -1,1 +1,1 @@
-from .notations import BigO, BigOmega
+from .notations import BigO, BigOmega, BigTheta

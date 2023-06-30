@@ -65,3 +65,19 @@ class BigOmega(Notation):
         return AnalysisFormatter(
             notation_format=NotationFormat.BIG_OMEGA,
         )
+        
+        
+'''
+Implementation of Big Theta notation
+'''
+class BigTheta(Notation):
+    
+    def __init__(self) -> None:
+        super().__init__()
+    
+    @Notation.report
+    def complexity(self, func) -> AnalysisFormatter:
+        
+        return AnalysisFormatter(
+            notation_format=NotationFormat.BIG_THETA,
+        )
