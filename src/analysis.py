@@ -4,9 +4,9 @@ from enum import Enum
 
 
 '''
-AST analyser
+AST analyzer
 '''
-class Analyser(ast.NodeVisitor):
+class Analyzer(ast.NodeVisitor):
     def __init__(self) -> None:
         self.stats = {
             'vars' : [],
