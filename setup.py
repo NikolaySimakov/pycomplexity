@@ -18,7 +18,7 @@ setup(
     name='pycomplexity',
     version='0.0.1',
     description='Measure complexity of your algorithm',
-    long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
+    long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(),
     url='',
     author='Hagai',
     author_email='n.simakoff@gmail.com',
