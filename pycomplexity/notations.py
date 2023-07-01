@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 from .analysis import Analyzer
 from .formatters import AnalysisFormatter
-from .enums import NotationFormat
+from .enums import NotationFormat, CommonBigO
 
 '''
 Base class of asymptotic notation
@@ -56,6 +56,118 @@ class BigO(AsymptoticNotation):
 
     def __init__(self) -> None:
         super().__init__()
+        
+    def constant(self, func) -> CommonBigO:
+        is_constant = False
+        
+        '''
+        TODO: function that checks if algorithm has constant complexity
+        '''
+        
+        if is_constant:
+            return CommonBigO.CONSTANT
+        return CommonBigO.NON_COMMON
+    
+    def linear(self, func) -> CommonBigO:
+        is_linear = False
+        
+        '''
+        TODO: function that checks if algorithm has linear complexity
+        '''
+        
+        if is_linear:
+            return CommonBigO.LINEAR
+        return CommonBigO.NON_COMMON
+    
+    def logarithmic(self, func) -> CommonBigO:
+        is_logarithmic = False
+        
+        '''
+        TODO: function that checks if algorithm has logarithmic complexity
+        '''
+        
+        if is_logarithmic:
+            return CommonBigO.LOGARITHMIC
+        return CommonBigO.NON_COMMON
+    
+    def linearithmic(self, func) -> CommonBigO:
+        is_linearithmic = False
+        
+        '''
+        TODO: function that checks if algorithm has linearithmic complexity
+        '''
+        
+        if is_linearithmic:
+            return CommonBigO.LINEARITHMIC
+        return CommonBigO.NON_COMMON
+    
+    def quadratic(self, func) -> CommonBigO:
+        is_quadratic = False
+        
+        '''
+        TODO: function that checks if algorithm has quadratic complexity
+        '''
+        
+        if is_quadratic:
+            return CommonBigO.QUADRATIC
+        return CommonBigO.NON_COMMON
+    
+    def cubic(self, func) -> CommonBigO:
+        is_cubic = False
+        
+        '''
+        TODO: function that checks if algorithm has cubic complexity
+        '''
+        
+        if is_cubic:
+            return CommonBigO.CUBIC
+        return CommonBigO.NON_COMMON
+    
+    def exponential(self, func) -> CommonBigO:
+        is_exponential = False
+        
+        '''
+        TODO: function that checks if algorithm has exponential complexity
+        '''
+        
+        if is_exponential:
+            return CommonBigO.EXPONENTIAL
+        return CommonBigO.NON_COMMON
+    
+    def factorial(self, func) -> CommonBigO:
+        is_factorial = False
+        
+        '''
+        TODO: function that checks if algorithm has factorial complexity
+        '''
+        
+        if is_factorial:
+            return CommonBigO.FACTORIAL
+        return CommonBigO.NON_COMMON
+    
+    def _calculate_complexity(self, func) -> CommonBigO:
+        checking_funcs = [
+            self.constant,
+            self.linear,
+            self.logarithmic,
+            self.linearithmic,
+            self.quadratic,
+            self.cubic,
+            self.exponential,
+            self.factorial,
+        ]
+        
+        _complexities = []
+        for _check in checking_funcs:
+            if (_complexity := _check(func)) is not CommonBigO.NON_COMMON:
+                _complexities.append(_complexity)
+        
+        if _complexities:
+            # returns the minimum from the list of possible complexities
+            return _complexities[0]
+        
+        # if all checking funcs returns CommonBigO.NON_COMMON
+        return CommonBigO.NON_COMMON
     
     @AsymptoticNotation.report
     def complexity(self, func) -> AnalysisFormatter:
