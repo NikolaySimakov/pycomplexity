@@ -7,9 +7,9 @@
 
 Python library to measure the complexity of your algorithms using the following asymptotic notations:
 
-- [Big O](https://en.wikipedia.org/wiki/Big_O_notation)
-- [Big Ω (omega)](https://en.wikipedia.org/wiki/Big_O_notation#Big_Omega_notation)
-- [Big Θ (theta)](https://en.wikipedia.org/?title=Big_Theta_notation&redirect=no)
+- [Big O](https://en.wikipedia.org/wiki/Big_O_notation) - pycomplexity.BigO
+- [Big Ω (omega)](https://en.wikipedia.org/wiki/Big_O_notation#Big_Omega_notation) - pycomplexity.BigOmega
+- [Big Θ (theta)](https://en.wikipedia.org/?title=Big_Theta_notation&redirect=no) - pycomplexity.BigTheta
 
 ## Installation
 
@@ -21,7 +21,7 @@ $ pip install pycomplexity
 
 ## Get started
 
-Simple examples of using Big-O notation. Here are the most popular and common examples.
+Simple examples of using Big O notation. Here are the most popular and common examples.
 
 ### Basic example
 
@@ -48,15 +48,18 @@ Function attributes: no attributes
 Memory of algorithm: O(1)
 ```
 
+Or when you set ``full_report=False`` the console ``output``:
+
+```
+Сomplexity of algorithm: O(1)
+Memory of algorithm: O(1)
+```
+
 ### Attributes vs Variables
 
 Using ``arr`` as variable:
 
 ```python
-from pycomplexity import BigO
-
-big_o = BigO(full_report=False)
-
 @big_o.complexity
 def your_func():
     count = 0
@@ -66,7 +69,7 @@ def your_func():
     return count
 ```
 
-Console returns ``output``:
+Console ``output``:
 
 ```
 Сomplexity of algorithm: O(1)
@@ -76,11 +79,6 @@ Memory of algorithm: O(1)
 Using ``arr`` as attribute:
 
 ```python
-from typing import List
-from pycomplexity import BigO
-
-big_o = BigO(full_report=False)
-
 @big_o.complexity
 def your_func(arr: List[int]) -> int:
     # not fixed length
@@ -90,7 +88,7 @@ def your_func(arr: List[int]) -> int:
     return count
 ```
 
-Console returns ``output``:
+Console ``output``:
 
 ```
 Сomplexity of algorithm: O(N)
