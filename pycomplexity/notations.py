@@ -2,12 +2,7 @@ import ast
 import inspect
 from typing import List, Tuple
 
-<<<<<<<< HEAD:pycomplexity/notations.py
-from pycomplexity.analysis import Analyzer, AnalysisFormatter, NotationFormat
-========
-from analysis import Analyzer, AnalysisFormatter, NotationFormat
->>>>>>>> b9371afd8058da6c402979f1d0bf20215ea8fbc7:notations.py
-
+from .analysis import Analyzer, AnalysisFormatter, NotationFormat
 
 '''
 Base class of asymptotic notation
