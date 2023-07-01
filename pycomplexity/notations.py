@@ -2,7 +2,8 @@ import ast
 import inspect
 from typing import List, Tuple
 
-from .analysis import Analyzer, AnalysisFormatter
+from .analysis import Analyzer
+from .formatters import AnalysisFormatter
 from .enums import NotationFormat
 
 '''
