@@ -2,7 +2,7 @@ import ast
 import inspect
 from typing import List, Tuple
 
-from .analysis import Analyzer, AnalysisFormatter, NotationFormat
+from pycomplexity.analysis import Analyzer, AnalysisFormatter, NotationFormat
 
 
 '''
