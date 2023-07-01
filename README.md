@@ -1,14 +1,15 @@
 # pycomplexity
 
-<div align="center">
-
 [![PyPI version](https://img.shields.io/pypi/v/pycomplexity)](https://pypi.org/project/pycomplexity/)
 [![License](https://img.shields.io/github/license/NikolaySimakov/pycomplexity)](https://github.com/NikolaySimakov/pycomplexity/blob/main/LICENSE)
 [![Coverage Status](https://coveralls.io/repos/github/NikolaySimakov/pycomplexity/badge.svg?branch=master)](https://coveralls.io/github/NikolaySimakov/pycomplexity?branch=master)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Python library to measure the complexity of your algorithms using [Big O](https://en.wikipedia.org/wiki/Big_O_notation), [Big Ω (omega)](https://en.wikipedia.org/wiki/Big_O_notation#Big_Omega_notation) and [Big Θ (theta)](https://en.wikipedia.org/?title=Big_Theta_notation&redirect=no) asymptotic notations.
-</div>
+Python library to measure the complexity of your algorithms using the following asymptotic notations:
+
+- [Big O](https://en.wikipedia.org/wiki/Big_O_notation)
+- [Big Ω (omega)](https://en.wikipedia.org/wiki/Big_O_notation#Big_Omega_notation)
+- [Big Θ (theta)](https://en.wikipedia.org/?title=Big_Theta_notation&redirect=no)
 
 ## Installation
 
