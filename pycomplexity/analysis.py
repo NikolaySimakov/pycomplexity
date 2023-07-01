@@ -2,7 +2,7 @@ import ast
 import shutil
 from typing import List, Tuple
 from pprint import pprint
-from enum import Enum
+from .enums import NotationFormat
 
 
 '''
@@ -28,18 +28,6 @@ class Analyzer(ast.NodeVisitor):
     def report(self):
         pprint(self.stats)
 
-
-'''
-Notation format enum
-'''
-class NotationFormat(Enum):
-    
-    BIG_O : str = 'BIG O'
-    BIG_OMEGA : str = 'BIG Ω (OMEGA)'
-    BIG_THETA : str = 'BIG Θ (THETA)'
-    
-    def __str__(self) -> str:
-        return str(self.value)
 
 
 '''
