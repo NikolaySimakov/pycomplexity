@@ -34,6 +34,5 @@ class CommonBigO(Enum):
         return self.value
     
     def __repr__(self) -> str:
-        _lower = self.name.replace('_', ' ').lower()
-        _formatted = _lower[0].upper() + _lower[1:]
+        _formatted = self.name.replace('_', ' ').capitalize()
         return f'{_formatted} time complexity'
